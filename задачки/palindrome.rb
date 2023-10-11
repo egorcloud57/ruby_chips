@@ -1,22 +1,16 @@
 #написать программу выявляющую палиндром и если есть возможность поменять ближайшие буквы местами и получить его то воспользоваться ей.
 
-func1 = lambda do |str, &block|
-  i = 1
-  while i < str.length / 2 + 1
-    if block.call(str[i - 1], str[-i])
-      'palindrome'
-    else
-      if block.call(str[i], str[-i])
-        tmp = str[i - 1]
-        str[i - 1] = str[i]
-        str[i] = tmp
-      else
-        return 'ne palindrome'
-      end
-    end
-    i += 1
+def palindrome(str)
+  length_half = str.length/2
+  first_half = str.slice(0..length_half)
+  last_half = str.slice(length_half..str.length)
+  if first_half == last_half.reverse
+    return 'палиндром'
+  elsif first_half.chars.sort == last_half.chars.sort
+    return 'палиндром если изменить порядок букв'
+  else
+    'не палиндром'
   end
-  return "#{str} - palindrome"
 end
 
-p func1.call('zjqwiwqzj'){ |first, last| true if first == last }
+p palindrome('zvarvaz')
