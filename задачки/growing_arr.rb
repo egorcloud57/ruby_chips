@@ -2,21 +2,14 @@
 
 arr = [33, 1, 4, 17, 65, 43, 27, 4, 10, 25, 50, 2]
 
-func = ->(arr) do 
-  grow = [0]
-  0.upto(arr.length - 2) do |i|
-    if arr[i + 1] > arr[i]
-      next if grow[-1] == 1
-      grow << 1 
-    else
-      next if grow[-1] == -1
-      grow << -1
-    end
+def growing(arr)
+  temporary = []
+  arr.each_index do |i|
+    break if arr[i + 1] == nil
+    temporary.push(1) if arr[i] < arr[i + 1] && temporary.last != 1
+    temporary.push(-1) if arr[i] > arr[i + 1] && temporary.last != -1
   end
-  growing = 0
-  depression = 0
-  grow.each { |el| growing += 1 if el == 1; depression += 1 if el == -1; }
-  [growing: growing, depression: depression]
+  "кол-во участков где элементы растут и падают = #{temporary.length}"
 end
 
-p func.(arr)
+p growing(arr)

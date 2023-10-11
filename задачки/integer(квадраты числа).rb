@@ -1,19 +1,13 @@
 # 20 = 4 в квадрате плюс 2 в квадрате ? написать алгоритм
-func = ->(n) do
-  i = 0
-  while i <= n
-    j = 0
-    while j <= n
-      if j * j + i * i == n
-        return true
-      else
-        false
-      end
-      j += 1
-    end
-    i += 1
+
+def algoritm(number)
+  j = 0
+  arr = *(1..number) # преобразование в массив ренджа
+  arr.each do |i|
+    j += 1 if i.even?
+    return "При i = #{i} и j = #{j} мы получили = #{number}" if number == i**2 + j**2
   end
-  return false
+  "для данного числа = #{number}, нельзя подобрать комбинацию"
 end
 
-p func.(13)
+p algoritm(20)
