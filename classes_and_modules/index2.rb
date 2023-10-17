@@ -34,14 +34,19 @@ p b.a
 MAIN = 'main'
 
 module Original
+  MAIN = 'original module'
   module Main
-    Main = 'main module'
+    MAIN = 'main module'
     class ChildMain
       def get_main
-        p ::MAIN # Выйти из всей вложенности
+        p MAIN
+        p Original::MAIN # Выйти из всей вложенности
+        p ::MAIN
       end
     end
   end
 end
 
-Original::Main::ChildMain.new.get_main
+obj = Original::Main::ChildMain.new
+obj.get_main
+p Original::Main::ChildMain.ancestors

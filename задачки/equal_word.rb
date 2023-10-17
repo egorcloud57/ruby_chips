@@ -3,6 +3,8 @@
 word = 'zrdqwefrtb'
 equal = 'brqfwertdz'
 
+# можно сделать проще через O(n)**2 что бы не нагружать процессор методом подбора чз шафл
+
 def word_equal(word, equal, callback)
   if word.chars.sort == equal.chars.sort
     while true
