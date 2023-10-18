@@ -61,7 +61,7 @@ class LessonSessionsController < ApplicationController
     autorize @lesson_session # проверим каким нить pundit
     if @lesson_session.update(lesson_session_params) do
       # код ниже если без сервисных обьектов. Его можно не запускать если lesson_session_params[:events_attributes] - нету
-      res = lesson_session_params[:events_attributes].each { |e| return true if e[:kind] == "$finished" } if lesson_session_params[:events_attributes].present?
+      res = lesson_session_params[:events_attributes].find { |e| e[:kind] == "$finished" } if lesson_session_params[:events_attributes].present?
       good_json unless res
       begin
         @lesson_session.finished!
@@ -117,7 +117,7 @@ class LessonSession < ApplicationRecord
     # какая то бизнес логика
   end
 
-  accepts_nested_attributes_for :events, allow_destroy: true
+  accepts_nested_attributes_for :events, allow_destroy: true # Если проверка для какой-либо из ассоциаций завершится неудачей, их сообщения об ошибках будут применены к родительской модели.
 end
 
 module App

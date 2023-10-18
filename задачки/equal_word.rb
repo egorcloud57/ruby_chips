@@ -16,7 +16,7 @@ def word_equal(word, equal, callback)
   end
 end
 
-# p word_equal(word, equal, -> (eq, word) { eq == word })
+p word_equal(word, equal, -> (eq, word) { eq == word })
 
 def word_equal_2(word, equal, callback)
   if word.chars.sort == equal.chars.sort
