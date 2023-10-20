@@ -12,7 +12,7 @@ end
 
 def annagram_2(arr)
   arr.inject(Hash.new []) do |hash, word|
-    hash[word.chars.sort] += [word]
+    hash[word.chars.sort] << word # += [word] аналогично
     hash
   end.values
 end
