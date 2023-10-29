@@ -1,0 +1,3 @@
+                          Обновить доступные версии ruby для rbenv
+cd ~/.rbenv/plugins/ruby-build/
+git pull
